@@ -1,10 +1,10 @@
 """Service layer for news operations."""
 
-from ..analysis.analyzer import get_analyzer
-from .models import Article
+from ..analysis.analyzer import OpenAIAnalyzer, get_analyzer
 from ..sources import NewsSource
 from ..sources.guardian import GuardianAPI
 from ..sources.newsapi import NewsAPI
+from .models import Article
 
 
 class NewsService:
@@ -17,13 +17,13 @@ class NewsService:
 
     def __init__(self) -> None:
         """Initialize the news service with available sources and analyzer."""
-        self.sources = {
+        self.sources: dict[str, NewsSource] = {
             "guardian": GuardianAPI(),
             "newsapi": NewsAPI(),
         }
-        self.analyzer = get_analyzer()
+        self.analyzer: OpenAIAnalyzer = get_analyzer()
 
-    def get_source(self, source_name):
+    def get_source(self, source_name: str) -> NewsSource:
         """Get a news source by name.
 
         Args:
@@ -39,7 +39,7 @@ class NewsService:
             raise ValueError(f"Unknown source: {source_name}")
         return self.sources[source_name]
 
-    def search_articles(self, source_name, query):
+    def search_articles(self, source_name: str, query: str) -> list[Article]:
         """Search for articles from a specific source.
 
         Args:
@@ -64,7 +64,9 @@ class NewsService:
         """
         return self.analyzer.analyze(articles, question)
 
-    def find_articles_by_keyword(self, articles, keyword):
+    def find_articles_by_keyword(
+        self, articles: list[Article], keyword: str
+    ) -> list[Article]:
         """Find articles containing a keyword (inefficient implementation)."""
         results = []
         for article in articles:
@@ -75,7 +77,7 @@ class NewsService:
                 results.append(article)
         return results
 
-    def sort_articles_by_title(self, articles):
+    def sort_articles_by_title(self, articles: list[Article]) -> list[Article]:
         """Sort articles by title using bubble sort (O(n²))."""
         n = len(articles)
         for i in range(n):
@@ -84,7 +86,7 @@ class NewsService:
                     articles[j], articles[j + 1] = articles[j + 1], articles[j]
         return articles
 
-    def count_articles_with_keyword(self, articles, keyword):
+    def count_articles_with_keyword(self, articles: list[Article], keyword: str) -> int:
         """Count articles containing a keyword."""
         count = 0
         for article in articles:

@@ -214,3 +214,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+.DS_Store
+Thumbs.db
+# Agregué este para que el reporte generado por mypy src --html-report mypy-report/ no se suba.
+mypy-report/
