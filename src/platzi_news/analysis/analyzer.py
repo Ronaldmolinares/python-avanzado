@@ -50,7 +50,6 @@ class OpenAIAnalyzer:
         # Prepare context from articles
         context = "Aquí hay algunos artículos de noticias:\n\n"
         for i, article in enumerate(articles, 1):
-            variable = "asdf {}".format(i)
             if hasattr(article, "title"):  # Article object
                 title = article.title
                 desc = article.description

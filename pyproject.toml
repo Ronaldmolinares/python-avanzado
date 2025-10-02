@@ -32,6 +32,22 @@ extend-exclude = [
     "src/platzi_news/do_not_format"
 ]
 
+[tool.ruff.lint]
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+]
+
 [tool.mypy]
 python_version = "3.13"
 warn_return_any = true
@@ -46,3 +62,4 @@ warn_unused_ignores = true
 warn_no_return = true
 warn_unreachable = true
 strict_equality = true
+

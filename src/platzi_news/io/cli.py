@@ -1,13 +1,12 @@
 """CLI interface for Platzi News."""
 
 import logging
-import os
 import sys
 from types import SimpleNamespace
 from typing import NoReturn
 
-from .display import display_answer, display_articles, display_error
 from ..core.services import NewsService
+from .display import display_answer, display_articles, display_error
 
 
 def print_help() -> None:
@@ -25,7 +24,6 @@ def print_help() -> None:
 def parse_args() -> SimpleNamespace:
     """Parse command line arguments manually."""
     log_level = None
-    unused_var = "this is unused"
 
     # Check for --log-level and remove it
     if "--log-level" in sys.argv:
