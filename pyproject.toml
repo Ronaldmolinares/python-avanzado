@@ -24,6 +24,9 @@ dev = [
     "lxml>=6.0.2",
     "mypy>=1.18.2",
     "pre-commit>=4.3.0",
+    "pytest>=8.4.2",
+    "pytest-cov>=7.0.0",
+    "pytest-xdist>=3.8.0",
     "ruff>=0.13.2",
     "types-requests>=2.32.4.20250913",
 ]
@@ -65,3 +68,9 @@ warn_unused_ignores = true
 warn_no_return = true
 warn_unreachable = true
 strict_equality = true
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+pythonpath = ["src"]
