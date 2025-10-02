@@ -23,6 +23,7 @@ platzi-news = "platzi_news.main:main"
 dev = [
     "lxml>=6.0.2",
     "mypy>=1.18.2",
+    "pre-commit>=4.3.0",
     "ruff>=0.13.2",
     "types-requests>=2.32.4.20250913",
 ]
@@ -62,4 +63,3 @@ warn_unused_ignores = true
 warn_no_return = true
 warn_unreachable = true
 strict_equality = true
-

@@ -10,3 +10,5 @@ class Article:
     title: str
     description: str
     url: str
+
+    """lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum"""
