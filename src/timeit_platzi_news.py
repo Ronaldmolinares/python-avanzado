@@ -32,11 +32,11 @@ def test_performance() -> None:
         articles = create_test_articles(size)
 
         time_original = timeit.timeit(
-            lambda: find_duplicate_titles(articles),
+            lambda articles=articles: find_duplicate_titles(articles),
             number=1,
         )
         time_improved = timeit.timeit(
-            lambda: find_duplicate_titles_improved(articles),
+            lambda articles=articles: find_duplicate_titles_improved(articles),
             number=1,
         )
 

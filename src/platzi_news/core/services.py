@@ -1,6 +1,6 @@
 """Service layer for news operations."""
 
-from ..analysis.analyzer import OpenAIAnalyzer, get_analyzer
+from ..analysis.analyzer import GeminiAnalyzer, get_analyzer
 from ..sources import NewsSource
 from ..sources.guardian import GuardianAPI
 from ..sources.newsapi import NewsAPI
@@ -21,7 +21,7 @@ class NewsService:
             "guardian": GuardianAPI(),
             "newsapi": NewsAPI(),
         }
-        self.analyzer: OpenAIAnalyzer = get_analyzer()
+        self.analyzer: GeminiAnalyzer = get_analyzer()
 
     def get_source(self, source_name: str) -> NewsSource:
         """Get a news source by name.

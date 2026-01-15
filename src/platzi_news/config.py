@@ -19,15 +19,17 @@ class Settings(BaseSettings):
     # API Keys (required)
     guardian_api_key: str
     newsapi_api_key: str
-    openai_api_key: str
+    google_api_key: str
 
     # Optional settings with defaults
     sentry_dsn: str | None = Field(None, description="Sentry DSN")
     max_articles: int = Field(10, description="Maximum number of articles to fetch")
     request_timeout: int = Field(10, description="Timeout for API requests in seconds")
-    openai_model: str = Field("gpt-4", description="OpenAI model to use for analysis")
-    openai_max_tokens: int = Field(
-        500, description="Maximum tokens for OpenAI response"
+    gemini_model: str = Field(
+        "gemini-1.5-flash-latest", description="Google Gemini model to use for analysis"
+    )
+    gemini_max_tokens: int = Field(
+        500, description="Maximum tokens for Gemini response"
     )
 
 

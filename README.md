@@ -9,13 +9,13 @@ Este proyecto es parte del curso "Python Avanzado" en Platzi, impartido por [@lc
 La aplicación integra tres APIs principales:
 - **The Guardian API** - Para noticias internacionales de calidad
 - **News API** - Para acceder a múltiples fuentes de noticias globales
-- **OpenAI API** - Para análisis inteligente y respuestas contextuales
+- **Google AI Studio (Gemini) API** - Para análisis inteligente y respuestas contextuales
 
 ## Características Principales
 
 ✅ **Búsqueda de Noticias**: Consulta noticias en tiempo real desde The Guardian y News API con un solo comando
 
-✅ **Análisis con IA**: Utiliza GPT-4 de OpenAI para analizar artículos y responder preguntas específicas sobre las noticias encontradas
+✅ **Análisis con IA**: Utiliza Gemini de Google AI Studio para analizar artículos y responder preguntas específicas sobre las noticias encontradas
 
 ✅ **Interfaz Simple**: Comandos intuitivos y fáciles de usar desde la terminal
 
@@ -26,7 +26,7 @@ La aplicación integra tres APIs principales:
 
 **Requisitos:**
 - Python 3.13 o superior
-- Claves de API válidas para The Guardian, News API y OpenAI
+- Claves de API válidas para The Guardian, News API y Google AI Studio
 
 ## Uso
 
@@ -60,7 +60,7 @@ platzi-news --log-level INFO ask "economía global" "¿Qué países se mencionan
 ```
 Este comando:
 1. Busca noticias relacionadas con el query en la fuente especificada
-2. Envía los artículos a OpenAI
+2. Envía los artículos a Google AI (Gemini)
 3. Obtiene una respuesta inteligente basada en el contenido de las noticias
 
 **Parámetros:**
@@ -73,7 +73,7 @@ Este comando:
 - **Python 3.13+** - Lenguaje principal
 - **requests** - Para consumir las APIs REST
 - **python-dotenv** - Gestión de variables de entorno
-- **openai** - Cliente oficial de OpenAI
+- **google-generativeai** - Cliente oficial de Google AI Studio (Gemini)
 - **rich** - Para una interfaz CLI atractiva y con colores
 - **pydantic** - Validación de datos y configuración
 - **pydantic-settings** - Gestión de configuración con Pydantic
@@ -94,25 +94,25 @@ Para usar **Platzi News** necesitas configurar las claves de API. Crea un archiv
 # Claves de API para Platzi News
 GUARDIAN_API_KEY=tu_clave_de_guardian_aqui
 NEWSAPI_API_KEY=tu_clave_de_newsapi_aqui
-OPENAI_API_KEY=tu_clave_de_openai_aqui
+GOOGLE_API_KEY=tu_clave_de_google_ai_aqui
 
 # Configuraciones opcionales
 MAX_ARTICLES=10
 REQUEST_TIMEOUT=10
-OPENAI_MODEL=gpt-4
-OPENAI_MAX_TOKENS=500
+GEMINI_MODEL=gemini-1.5-flash-latest
+GEMINI_MAX_TOKENS=500
 ```
 
 ### Claves de API Requeridas
 - **The Guardian**: Regístrate en https://open-platform.theguardian.com/
 - **News API**: Regístrate en https://newsapi.org/
-- **OpenAI**: Regístrate en https://platform.openai.com/
+- **Google AI Studio**: Obtén tu API key en https://aistudio.google.com/app/apikey
 
 ### Configuraciones Opcionales
 - `MAX_ARTICLES`: Número máximo de artículos a obtener (por defecto: 10)
 - `REQUEST_TIMEOUT`: Tiempo de espera para las solicitudes API en segundos (por defecto: 10)
-- `OPENAI_MODEL`: Modelo de OpenAI a usar para el análisis (por defecto: gpt-4)
-- `OPENAI_MAX_TOKENS`: Número máximo de tokens en la respuesta de OpenAI (por defecto: 500)
+- `GEMINI_MODEL`: Modelo de Google Gemini a usar para el análisis (por defecto: gemini-1.5-flash-latest)
+- `GEMINI_MAX_TOKENS`: Número máximo de tokens en la respuesta de Gemini (por defecto: 500)
 
 ## Logging y Depuración
 
@@ -168,7 +168,7 @@ platzi-news ask "energías renovables" "¿Cuáles son las tendencias principales
 - 🔄 **Actualizado**: Acceso a noticias en tiempo real
 - 🎚️ **Flexible**: Elige la fuente que prefieras según tus necesidades
 - 🛠️ **Extensible**: Fácil de agregar nuevas fuentes de noticias
-- 💡 **Inteligente**: Análisis contextual gracias a GPT-4
+- 💡 **Inteligente**: Análisis contextual gracias a Google Gemini
 
 ## Desarrollo
 
@@ -181,7 +181,7 @@ src/platzi_news/
 ├── main.py                # Punto de entrada
 ├── analysis/              # Módulo de análisis con IA
 │   ├── __init__.py
-│   └── analyzer.py        # Integración con OpenAI
+│   └── analyzer.py        # Integración con Google AI (Gemini)
 ├── core/                  # Lógica central de la aplicación
 │   ├── __init__.py
 │   ├── exceptions.py      # Excepciones personalizadas
