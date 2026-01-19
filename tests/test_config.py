@@ -14,7 +14,7 @@ class TestSettings(unittest.TestCase):
         {
             "GUARDIAN_API_KEY": "test_guardian",
             "NEWSAPI_API_KEY": "test_newsapi",
-            "OPENAI_API_KEY": "test_openai",
+            "GOOGLE_API_KEY": "test_google",
         },
     )
     def test_settings_creation_with_env(self):
@@ -22,11 +22,11 @@ class TestSettings(unittest.TestCase):
         settings = Settings()
         self.assertEqual(settings.guardian_api_key, "test_guardian")
         self.assertEqual(settings.newsapi_api_key, "test_newsapi")
-        self.assertEqual(settings.openai_api_key, "test_openai")
+        self.assertEqual(settings.google_api_key, "test_google")
         self.assertEqual(settings.max_articles, 10)
         self.assertEqual(settings.request_timeout, 10)
-        self.assertEqual(settings.openai_model, "gpt-4")
-        self.assertEqual(settings.openai_max_tokens, 500)
+        self.assertEqual(settings.gemini_model, "gemini-1.5-flash-latest")
+        self.assertEqual(settings.gemini_max_tokens, 500)
 
     # Skipping test for missing keys as global settings is created at import time
     # and testing it requires complex mocking. The class validation is tested elsewhere.
@@ -36,11 +36,11 @@ class TestSettings(unittest.TestCase):
         {
             "GUARDIAN_API_KEY": "test_guardian",
             "NEWSAPI_API_KEY": "test_newsapi",
-            "OPENAI_API_KEY": "test_openai",
+            "GOOGLE_API_KEY": "test_google",
             "MAX_ARTICLES": "20",
             "REQUEST_TIMEOUT": "15",
-            "OPENAI_MODEL": "gpt-3.5-turbo",
-            "OPENAI_MAX_TOKENS": "300",
+            "GEMINI_MODEL": "gemini-1.5-pro",
+            "GEMINI_MAX_TOKENS": "300",
         },
     )
     def test_settings_custom_values(self):
@@ -48,8 +48,8 @@ class TestSettings(unittest.TestCase):
         settings = Settings()
         self.assertEqual(settings.max_articles, 20)
         self.assertEqual(settings.request_timeout, 15)
-        self.assertEqual(settings.openai_model, "gpt-3.5-turbo")
-        self.assertEqual(settings.openai_max_tokens, 300)
+        self.assertEqual(settings.gemini_model, "gemini-1.5-pro")
+        self.assertEqual(settings.gemini_max_tokens, 300)
 
     def test_settings_case_insensitive(self):
         """Test Settings is case insensitive."""
@@ -58,7 +58,7 @@ class TestSettings(unittest.TestCase):
             {
                 "guardian_api_key": "test_guardian",
                 "newsapi_api_key": "test_newsapi",
-                "openai_api_key": "test_openai",
+                "google_api_key": "test_google",
             },
         ):
             settings = Settings()
