@@ -19,6 +19,16 @@ def create_test_articles(n: int) -> list[Article]:
     ]
 
 
+def bench_original(articles: list[Article]) -> list[tuple[Article, Article]]:
+    """Benchmark wrapper for find_duplicate_titles."""
+    return find_duplicate_titles(articles)
+
+
+def bench_improved(articles: list[Article]) -> list[tuple[Article, Article]]:
+    """Benchmark wrapper for find_duplicate_titles_improved."""
+    return find_duplicate_titles_improved(articles)
+
+
 def test_performance() -> None:
     """Test and display performance comparison
     between original and improved find_duplicate_titles."""
