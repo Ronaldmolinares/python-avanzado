@@ -12,12 +12,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout code
+        uses: actions/checkout@v5
 
       - name: Install uv
         uses: astral-sh/setup-uv@v6
         with:
           python-version: "3.13"
+          # Activa la caché automática para dependencias y herramientas
+          enable-cache: true
+          # Se invalida la caché solo si cambian las dependencias reales
+          cache-dependency-glob: "**/uv.lock"
 
       - name: ruff check
         run: uv run ruff check
@@ -26,6 +31,8 @@ jobs:
         run: uv run ruff format
 
       - name: mypy
+        # Mantenemos --no-incremental para evitar los errores inconsistentes que tenías,
+        # pero uv se encargará de que el entorno sea idéntico cada vez.
         run: uv run mypy src --no-incremental
 
       - name: pytest
@@ -33,4 +40,5 @@ jobs:
           GUARDIAN_API_KEY: "this-is-not-a-api-key"
           NEWSAPI_API_KEY: "this-is-not-a-api-key"
           GOOGLE_API_KEY: "this-is-not-a-api-key"
+        # -n auto usa todos los núcleos para ir más rápido
         run: uv run pytest -n auto
